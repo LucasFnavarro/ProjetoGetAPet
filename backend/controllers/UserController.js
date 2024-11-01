@@ -2,11 +2,14 @@ import { validarEmail } from "../helpers/validarEmail.js";
 import bcrypt from "bcrypt";
 import { User } from "../models/User.js";
 import { createUserToken } from "../helpers/create-user-token.js";
+import { getToken } from "../helpers/get-token.js";
+import jwt from "jsonwebtoken";
 
 export class UserController {
   static async register(req, res) {
     const { name, email, password, confirmpassword, image, phone } = req.body;
 
+    // Validações = Não é a melhor forma de se fazer ...
     if (!name) {
       return res
         .status(422)
@@ -108,5 +111,27 @@ export class UserController {
     }
 
     await createUserToken(user, req, res);
+  }
+
+  static async checkUserViaToken(req, res) {
+    let currentUser;
+
+    console.log(currentUser);
+
+    if (req.headers.authorization) {
+      const token = getToken(req);
+      const decoded = jwt.verify(
+        token,
+        "IBHIHibhBIYUHG8YUG8YgyspababvsabvgY7G7163187631637176guvhvdOVTAStfvoVTCVPGgb"
+      );
+
+      currentUser = await User.findByPk(decoded.id);
+      currentUser.password = undefined;
+    } else {
+      currentUser = null;
+      res.json({ msg: "teste de validação" });
+    }
+
+    res.status(200).json({ currentUser });
   }
 }

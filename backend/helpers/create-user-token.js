@@ -6,8 +6,7 @@ export const createUserToken = async (user, req, res) => {
       name: user.name,
       id: user.id,
     },
-    "IBHIHibhBIYUHG8YUG8YgyspababvsabvgY7G7163187631637176guvhvdOVTAStfvoVTCVPGgb",
-    { expiresIn: "1h" }
+    "IBHIHibhBIYUHG8YUG8YgyspababvsabvgY7G7163187631637176guvhvdOVTAStfvoVTCVPGgb"
   );
 
   res.status(200).json({
