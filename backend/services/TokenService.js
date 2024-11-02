@@ -16,3 +16,7 @@ export class TokenService {
     return jwt.decode(token);
   }
 }
+
+
+
+////// >> CRIAR AUTHCONFIG NA RAIZ ./config \\\\\\\\

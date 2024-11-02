@@ -1,7 +1,5 @@
-// src/services/UserService.js
 import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { validarEmail } from "../helpers/validarEmail.js";
 
 export class UserService {

@@ -1,4 +1,3 @@
-// helpers/createUserToken.js
 import { TokenService } from "../services/TokenService.js";
 
 export class AuthResponse {
